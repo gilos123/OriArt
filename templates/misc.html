@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Ori Willensky</title>
+    <link rel="stylesheet" type="text/css" href="../static/styles/style.css">
+    <script src="../static/scripts/script.js" ></script>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-container">
+            <div class="top-bar-section logo">
+                <img src="../static/Icon.png" alt="Ori Willensky" height="80px" width="80px"/>
+            </div>
+            <div class="top-bar-section description">
+                <h6>Hi! My name is Ori, feel free to use any of this art for your projects, ttrpg games, and any other use you want.</h6>
+                <h6> If you did, please consider supporting me in the links here.</h6>
+            </div>
+            <div class="top-bar-section links">
+                <a href="https://www.instagram.com/oriwillensky/">Instagram</a>
+                <a href="https://www.artstation.com/ori_willensky">Artstation</a>
+                <a href="https://artistree.io/oriwill">Artistree</a>
+                <a href="https://www.patreon.com/Oriwillart">Patreon</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-container">
+        <div class="sidebar">
+            <a href="/">Welcome</a>
+            <a href="/portraits">Portraits</a>
+            <a href="/maps">Maps</a>
+            <a href="/misc" class="active">Miscellaneous</a>
+        </div>
+        <div class="main-content">
+            <h1>Miscellaneous</h1>
+            <div id="gallery">
+                {% for image in images %}
+                <a href="{{ url_for('static', filename=image) }}" download="OriArt.png">
+                    <img src="{{ url_for('static', filename=image) }}" alt="{{ image }}" height="300px" >
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

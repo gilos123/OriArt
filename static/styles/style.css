@@ -1,0 +1,115 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+
+}
+
+.top-bar {
+    height: 90px;
+    width: 100%;
+    display: flex;
+    background-color: #4A5E55;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
+    justify-content: center; /* Center items horizontally, modify as needed */
+    align-items: center;     /* Center items vertically, modify as needed */
+}
+
+
+.flex-container {
+
+    display: flex;
+    height: calc(100% - 90px); /* Adjust height to take the full height minus top bar height */
+}
+
+/* .sidebar {
+    background-color: #f4f4f4;
+    width: 200px; 
+    padding: 20px;
+} */
+
+.main-content {
+    flex-grow: 1; /* Main content takes up the rest of the horizontal space */
+    padding: 20px;
+}
+
+.top-bar-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 10px;
+}
+
+.top-bar-section {
+    flex-grow: 1; /* Equal growth for each section */
+    display: flex;
+    margin: 20px;
+    color: white;
+
+}
+
+#gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Adjust the gap as needed */
+}
+.image {
+    flex: 0 0 auto; /* Don't grow, don't shrink, initial basis auto */
+}
+.image img {
+    display: block; /* Remove inline spacing */
+    width: auto; /* Keep original image width */
+    height: 300px; /* Adjust height as needed */
+    object-fit: contain; /* Keep aspect ratio */
+}
+
+.top-bar-section.description {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.top-bar-section.links {
+    flex-grow: 1;
+    justify-content: center; /* Center items horizontally, modify as needed */
+    align-items: center;     
+    flex-direction: column;
+    
+}
+
+a {
+    color: inherit;  /* This makes the link color the same as the parent text color */
+    text-decoration: none;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column; /* Aligns children vertically */
+    justify-content: flex-start; /* Aligns children to the start of the flex container */
+    align-items: flex-start; /* Aligns children to the start of their cross axis */
+    /* height: 100vh; Full height of the viewport */
+    width: 200px; /* Sidebar width, adjust as needed */
+    background-color: #f0f0f0; /* Sidebar background color, change as desired */
+    padding: 10px; /* Padding inside the sidebar */
+    /* box-sizing: 100vh; */
+ /* Includes padding in the width calculation */
+}
+
+.sidebar a {
+    text-decoration: none; /* Removes underline from links */
+    color: #333; /* Text color for links, change as desired */
+    padding: 8px 16px; /* Padding inside each link, adjust as needed */
+    margin: 4px 0; /* Margin between links, adjust as needed */
+    display: block; /* Makes the anchor fill the horizontal space */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.sidebar a:hover {
+    background-color: #ddd; /* Color when hovering over the link */
+}
+
+.active {
+    background-color: rgba(95, 129, 113, 0.414);
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.5); /* Drop shadow effect */
+    color: white; /* Optional: change the text color for better contrast */
+    /* other styles for active tag */
+}
