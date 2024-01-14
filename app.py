@@ -1,30 +1,32 @@
 import os
-from flask import Flask, request, jsonify,render_template
+from flask import Flask, request, jsonify, redirect, render_template
 from flask_cors import CORS
 import ssl
 from werkzeug.serving import run_simple
 from werkzeug.middleware.proxy_fix import ProxyFix
+import requests
+from datetime import date
 
 
 app = Flask(__name__)
 CORS(app)
 app.wsgi_app = ProxyFix(app.wsgi_app)
-# context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
 
 # # Load your private key and certificate
-# context.load_cert_chain(r'C:\Users\gilos\cardcom\fullchain.pem', r'C:\Users\gilos\cardcom\privkey.pem')
+context.load_cert_chain(r'/etc/letsencrypt/live/servepicsori.servepics.com/fullchain.pem', r'/etc/letsencrypt/live/servepicsori.servepics.com/privkey.pem')
 
 #     # Optional: Set up ciphers
-# ciphers = (
-#     'DHE-RSA-AES256-GCM-SHA384:'
-#     'DHE-RSA-AES128-GCM-SHA256:'
-#     'ECDHE-ECDSA-AES256-GCM-SHA384:'
-#     'ECDHE-ECDSA-AES128-GCM-SHA256'
-# )
-# context.set_ciphers(ciphers)
+ciphers = (
+    'DHE-RSA-AES256-GCM-SHA384:'
+    'DHE-RSA-AES128-GCM-SHA256:'
+    'ECDHE-ECDSA-AES256-GCM-SHA384:'
+    'ECDHE-ECDSA-AES128-GCM-SHA256'
+)
+context.set_ciphers(ciphers)
 
-# # Disable older protocols
-# context.options |= ssl.OP_NO_TLSv1 | ssl.OP_NO_TLSv1_1
+# Disable older protocols
+context.options |= ssl.OP_NO_TLSv1 | ssl.OP_NO_TLSv1_1
 
 @app.route('/')
 def hello_world():  # put application's code here
@@ -51,4 +53,4 @@ def maps():  # put application's code here
     print(image_files)
     return render_template('maps.html', images=image_files)
 if __name__ == '__main__':
-    run_simple('0.0.0.0',443, app) #,  ssl_context=context)
+    run_simple('0.0.0.0',443, app, ssl_context=context) #,  ssl_context=context)
